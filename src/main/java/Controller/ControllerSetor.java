@@ -39,4 +39,12 @@ public class ControllerSetor {
         }
         return lista;
     }
-}
+
+    public List<ModelSetor> listarSetores() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public void cadastrarSetor(ModelSetor novoSetor) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    }

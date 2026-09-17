@@ -1,6 +1,6 @@
 package com.mycompany.chamadost.i;
 
-import java.lang.ModuleLayer.Controller.ControllerSetor;
+import Controller.ControllerSetor;
 import Model.ModelSetor;
 import java.util.List;
 
