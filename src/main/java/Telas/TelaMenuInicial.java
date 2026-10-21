@@ -107,9 +107,19 @@ public class TelaMenuInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFuncionarioActionPerformed
 
     private void btnTIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTIActionPerformed
-        TelaPainelTI painelTI = new TelaPainelTI();
-        painelTI.setVisible(true);
+       String senha = javax.swing.JOptionPane.showInputDialog(
+        this, 
+        "Digite a senha de acesso da T.I.:", 
+        "Acesso Restrito", 
+        javax.swing.JOptionPane.QUESTION_MESSAGE
+    );
+    if (senha != null && senha.equals("1234")) {
+        TelaPainelTI painel = new TelaPainelTI();
+        painel.setVisible(true);
         this.dispose();
+    } else if (senha != null) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Senha incorreta!", "Erro", javax.swing.JOptionPane.ERROR_MESSAGE);
+    }
         // TODO add your handling code here:
     }//GEN-LAST:event_btnTIActionPerformed
 
