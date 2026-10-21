@@ -13,9 +13,34 @@ public class TelaGerenciarChamados extends javax.swing.JFrame {
     /**
      * Creates new form TelaGerenciarChamados
      */
-    public TelaGerenciarChamados() {
-        initComponents();
+  public TelaGerenciarChamados() {
+    initComponents();
+    this.setLocationRelativeTo(null); // Centraliza a janela
+    carregarTabelaChamados(); // Preenche a tabela ao abrir
+}
+private void carregarTabelaChamados() {
+    try {
+        javax.swing.table.DefaultTableModel modelo = (javax.swing.table.DefaultTableModel) tblChamados.getModel();
+        modelo.setRowCount(0); // Limpa as linhas atuais da tabela
+
+        Controller.ControllerChamado controller = new Controller.ControllerChamado();
+        java.util.List<Model.ModelChamado> lista = controller.listar();
+
+        for (Model.ModelChamado c : lista) {
+            modelo.addRow(new Object[]{
+                c.getIdChamado(),
+                c.getTipoImpacto(), // Substitui o antigo getTitulo() / getPrioridade()
+                c.getDescricao(),
+                c.getStatus(),
+                c.getIdFuncionario(),
+                c.getIdSetor()
+            });
+        }
+    } catch (Exception e) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Erro ao carregar chamados: " + e.getMessage());
+    
     }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -26,17 +51,56 @@ public class TelaGerenciarChamados extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblChamados = new javax.swing.JTable();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel2.setText("Gestão de Chamados - T.I");
+
+        tblChamados.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Título", "Descrição", "Prioridade", "Estado", "ID Funcionário"
+            }
+        ));
+        jScrollPane1.setViewportView(tblChamados);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(267, 267, 267)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(183, 183, 183)
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 644, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(8, 8, 8)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -78,5 +142,9 @@ public class TelaGerenciarChamados extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tblChamados;
     // End of variables declaration//GEN-END:variables
 }
