@@ -113,7 +113,7 @@ public class TelaMenuInicial extends javax.swing.JFrame {
         "Acesso Restrito", 
         javax.swing.JOptionPane.QUESTION_MESSAGE
     );
-    if (senha != null && senha.equals("1234")) {
+    if (senha != null && senha.equals("2160")) {
         TelaPainelTI painel = new TelaPainelTI();
         painel.setVisible(true);
         this.dispose();
