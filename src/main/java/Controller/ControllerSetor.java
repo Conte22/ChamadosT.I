@@ -11,7 +11,10 @@ package Controller;
 
 import Model.ModelSetor;
 import com.mycompany.chamadost.i.Conexao;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,22 +32,26 @@ public class ControllerSetor {
 
     public List<ModelSetor> listar() throws SQLException {
         List<ModelSetor> lista = new ArrayList<>();
-        String sql = "SELECT * FROM setor";
+        String sql = "SELECT * FROM setor ORDER BY id_setor";
         try (Connection conn = Conexao.getConexao();
              PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
             while (rs.next()) {
-                lista.add(new ModelSetor(rs.getInt("id_setor"), rs.getString("nome_setor"), rs.getString("ramal")));
+                lista.add(new ModelSetor(
+                    rs.getInt("id_setor"), 
+                    rs.getString("nome_setor"), 
+                    rs.getString("ramal")
+                ));
             }
         }
         return lista;
     }
 
-    public List<ModelSetor> listarSetores() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void cadastrarSetor(ModelSetor novoSetor) {
+        throw new UnsupportedOperationException("Not supported yet."); 
     }
 
-    public void cadastrarSetor(ModelSetor novoSetor) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public List<ModelSetor> listarSetores() {
+        throw new UnsupportedOperationException("Not supported yet."); 
     }
-    }
+}
