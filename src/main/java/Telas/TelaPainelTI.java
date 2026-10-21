@@ -26,21 +26,97 @@ public class TelaPainelTI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnGerenciarChamados = new javax.swing.JButton();
+        btnCadastrarFuncionario = new javax.swing.JButton();
+        btnVoltar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        btnGerenciarChamados.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnGerenciarChamados.setText("Gerenciar Chamados");
+        btnGerenciarChamados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGerenciarChamadosActionPerformed(evt);
+            }
+        });
+
+        btnCadastrarFuncionario.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnCadastrarFuncionario.setText("Cadastrar Funcionario");
+        btnCadastrarFuncionario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarFuncionarioActionPerformed(evt);
+            }
+        });
+
+        btnVoltar.setBackground(new java.awt.Color(51, 153, 0));
+        btnVoltar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnVoltar.setForeground(new java.awt.Color(255, 255, 255));
+        btnVoltar.setText("Voltar ao Menu");
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setText("Painel de Acesso Do Setor De TI");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(49, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGap(114, 114, 114)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btnCadastrarFuncionario)
+                                    .addComponent(btnGerenciarChamados))))
+                        .addGap(72, 72, 72))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnVoltar)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addComponent(btnGerenciarChamados)
+                .addGap(51, 51, 51)
+                .addComponent(btnCadastrarFuncionario)
+                .addGap(96, 96, 96)
+                .addComponent(btnVoltar)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        TelaMenuInicial menu = new TelaMenuInicial();
+        menu.setVisible(true);
+        this.dispose();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVoltarActionPerformed
+
+    private void btnGerenciarChamadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGerenciarChamadosActionPerformed
+        TelaGerenciarChamados gerenciar = new TelaGerenciarChamados();
+        gerenciar.setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGerenciarChamadosActionPerformed
+
+    private void btnCadastrarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarFuncionarioActionPerformed
+        TelaCadastroFuncionario cadastro = new TelaCadastroFuncionario();
+        cadastro.setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCadastrarFuncionarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +154,9 @@ public class TelaPainelTI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCadastrarFuncionario;
+    private javax.swing.JButton btnGerenciarChamados;
+    private javax.swing.JButton btnVoltar;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
