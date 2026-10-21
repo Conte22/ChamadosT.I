@@ -15,13 +15,13 @@ public class TelaGerenciarChamados extends javax.swing.JFrame {
      */
   public TelaGerenciarChamados() {
     initComponents();
-    this.setLocationRelativeTo(null); // Centraliza a janela
-    carregarTabelaChamados(); // Preenche a tabela ao abrir
+    this.setLocationRelativeTo(null); 
+    carregarTabelaChamados(); 
 }
 private void carregarTabelaChamados() {
     try {
         javax.swing.table.DefaultTableModel modelo = (javax.swing.table.DefaultTableModel) tblChamados.getModel();
-        modelo.setRowCount(0); // Limpa as linhas atuais da tabela
+        modelo.setRowCount(0); 
 
         Controller.ControllerChamado controller = new Controller.ControllerChamado();
         java.util.List<Model.ModelChamado> lista = controller.listar();
@@ -29,7 +29,7 @@ private void carregarTabelaChamados() {
         for (Model.ModelChamado c : lista) {
             modelo.addRow(new Object[]{
                 c.getIdChamado(),
-                c.getTipoImpacto(), // Substitui o antigo getTitulo() / getPrioridade()
+                c.getTipoImpacto(), 
                 c.getDescricao(),
                 c.getStatus(),
                 c.getIdFuncionario(),
