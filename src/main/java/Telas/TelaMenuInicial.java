@@ -26,21 +26,106 @@ public class TelaMenuInicial extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        btnFuncionario = new javax.swing.JButton();
+        btnTI = new javax.swing.JButton();
+        btnSair = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel1.setText("Selecione o Perfil de Acesso");
+
+        btnFuncionario.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        btnFuncionario.setText("Abrir Chamado");
+        btnFuncionario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFuncionarioActionPerformed(evt);
+            }
+        });
+
+        btnTI.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        btnTI.setText("Painel T.I");
+        btnTI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTIActionPerformed(evt);
+            }
+        });
+
+        btnSair.setBackground(new java.awt.Color(255, 0, 51));
+        btnSair.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
+        btnSair.setForeground(new java.awt.Color(255, 255, 255));
+        btnSair.setText("Fechar");
+        btnSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSairActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(btnFuncionario)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnTI)
+                .addGap(66, 66, 66))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(86, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(98, 98, 98))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnSair)
+                        .addGap(25, 25, 25))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(jLabel1)
+                .addGap(60, 60, 60)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnFuncionario)
+                    .addComponent(btnTI))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 231, Short.MAX_VALUE)
+                .addComponent(btnSair)
+                .addGap(17, 17, 17))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFuncionarioActionPerformed
+        TelaGerenciarChamados telaChamado = new TelaGerenciarChamados ();
+        telaChamado.setVisible(true);
+        this.dispose();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnFuncionarioActionPerformed
+
+    private void btnTIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTIActionPerformed
+        TelaPainelTI painelTI = new TelaPainelTI();
+        painelTI.setVisible(true);
+        this.dispose();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnTIActionPerformed
+
+    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
+        int opcao = javax.swing.JOptionPane.showConfirmDialog(
+        this, 
+        "Deseja realmente fechar o sistema?", 
+        "Confirmar Saída", 
+        javax.swing.JOptionPane.YES_NO_OPTION
+    );
+    
+    if (opcao == javax.swing.JOptionPane.YES_OPTION) {
+        System.exit(0);
+    }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSairActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +163,9 @@ public class TelaMenuInicial extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnFuncionario;
+    private javax.swing.JButton btnSair;
+    private javax.swing.JButton btnTI;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
