@@ -100,9 +100,8 @@ public class TelaMenuInicial extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFuncionarioActionPerformed
-        TelaGerenciarChamados telaChamado = new TelaGerenciarChamados ();
-        telaChamado.setVisible(true);
-        this.dispose();
+    TelaChamado telaChamado = new TelaChamado();
+    telaChamado.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_btnFuncionarioActionPerformed
 
