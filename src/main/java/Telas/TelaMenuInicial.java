@@ -14,7 +14,8 @@ public class TelaMenuInicial extends javax.swing.JFrame {
      * Creates new form TelaMenuInicial
      */
     public TelaMenuInicial() {
-        initComponents();
+    initComponents();
+    this.setLocationRelativeTo(null);
     }
 
     /**
