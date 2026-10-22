@@ -42,7 +42,7 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="cbSetor" min="-2" max="-2" attributes="0"/>
                                   <Component id="cbTipoImpacto" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtIdFuncionario" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtIdFuncionario" alignment="0" min="-2" pref="195" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -52,7 +52,7 @@
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="88" max="32767" attributes="0"/>
+              <EmptySpace pref="40" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
