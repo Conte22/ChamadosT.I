@@ -2,6 +2,7 @@ package com.mycompany.chamadost.i;
 
 import Controller.ControllerSetor;
 import Model.ModelSetor;
+import Telas.TelaMenuInicial;
 import java.util.List;
 
 public class ChamadosTI {
@@ -19,6 +20,13 @@ public class ChamadosTI {
             for (ModelSetor s : setores) {
                 System.out.println("ID: " + s.getIdSetor() + " | Nome: " + s.getNomeSetor() + " | Ramal: " + s.getRamal());
             }
+
+            // ABRIR A TELA APÓS O TESTE:
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    new TelaMenuInicial().setVisible(true);
+                }
+            });
 
         } catch (Exception e) {
             System.err.println(">>> ERRO NA CONEXAO OU EXECUCAO: " + e.getMessage());
