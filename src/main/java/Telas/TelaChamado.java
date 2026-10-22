@@ -174,13 +174,11 @@ private void carregarCombos() {
         txtDescricao.setText("");
     } catch (Exception e) {
         javax.swing.JOptionPane.showMessageDialog(this, "Erro ao registrar chamado: " + e.getMessage());
-    
-}        // TODO add your handling code here:
+            }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
-    this.dispose(); // Fecha esta tela
-// TODO add your handling code here:
+    this.dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     /**
