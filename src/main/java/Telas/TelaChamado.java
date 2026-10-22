@@ -78,8 +78,18 @@ private void carregarCombos() {
         jScrollPane1.setViewportView(txtDescricao);
 
         btnSalvar.setText("Salvar");
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
 
         btnVoltar.setText("Voltar");
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Descrição:");
 
@@ -140,6 +150,38 @@ private void carregarCombos() {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+    if (txtDescricao.getText().trim().isEmpty() || cbFuncionario.getSelectedItem() == null || cbSetor.getSelectedItem() == null) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Preencha a descrição e selecione os campos obrigatórios!");
+        return;
+    }
+
+    try {
+        int idFuncionario = Integer.parseInt(cbFuncionario.getSelectedItem().toString().split(" - ")[0]);
+        int idSetor = Integer.parseInt(cbSetor.getSelectedItem().toString().split(" - ")[0]);
+        String impacto = cbTipoImpacto.getSelectedItem().toString();
+        String descricao = txtDescricao.getText().trim();
+
+        Model.ModelChamado chamado = new Model.ModelChamado(
+            0, idFuncionario, idSetor, impacto, descricao, "Aberto", java.time.LocalDateTime.now()
+        );
+
+        Controller.ControllerChamado controller = new Controller.ControllerChamado();
+        controller.salvar(chamado);
+
+        javax.swing.JOptionPane.showMessageDialog(this, "Chamado registrado com sucesso!");
+        txtDescricao.setText("");
+    } catch (Exception e) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Erro ao registrar chamado: " + e.getMessage());
+    
+}        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+    this.dispose(); // Fecha esta tela
+// TODO add your handling code here:
+    }//GEN-LAST:event_btnVoltarActionPerformed
 
     /**
      * @param args the command line arguments
