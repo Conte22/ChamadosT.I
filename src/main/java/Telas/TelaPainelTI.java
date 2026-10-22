@@ -107,14 +107,14 @@ public class TelaPainelTI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnGerenciarChamadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGerenciarChamadosActionPerformed
-        TelaGerenciarChamados gerenciar = new TelaGerenciarChamados();
-        gerenciar.setVisible(true);
+        TelaGerenciarChamados telaGerenciar = new TelaGerenciarChamados();
+        telaGerenciar.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGerenciarChamadosActionPerformed
 
     private void btnCadastrarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarFuncionarioActionPerformed
-        TelaCadastroFuncionario cadastro = new TelaCadastroFuncionario();
-        cadastro.setVisible(true);
+       TelaCadastroFuncionario telaCadastro = new TelaCadastroFuncionario();
+        telaCadastro.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCadastrarFuncionarioActionPerformed
 
