@@ -15,27 +15,24 @@ public class TelaChamado extends javax.swing.JFrame {
      */
   public TelaChamado() {
     initComponents();
-    this.setLocationRelativeTo(null); // Centraliza a janela
-    carregarCombos(); // Carrega os dados das caixas de seleção
+    this.setLocationRelativeTo(null); 
+    carregarCombos(); 
 }
 
 private void carregarCombos() {
     try {
-        // Popula Funcionários
         Controller.ControllerFuncionario ctrlFunc = new Controller.ControllerFuncionario();
         cbFuncionario.removeAllItems();
         for (Model.ModelFuncionario f : ctrlFunc.listar()) {
         cbFuncionario.addItem(f.getIdFuncionario() + " - " + f.getNome());
         }
 
-        // Popula Setores
         Controller.ControllerSetor ctrlSetor = new Controller.ControllerSetor();
         cbSetor.removeAllItems();
         for (Model.ModelSetor s : ctrlSetor.listar()) {
             cbSetor.addItem(s.getIdSetor() + " - " + s.getNomeSetor());
         }
 
-        // Popula Impacto
         cbTipoImpacto.removeAllItems();
         cbTipoImpacto.addItem("Baixo");
         cbTipoImpacto.addItem("Médio");
