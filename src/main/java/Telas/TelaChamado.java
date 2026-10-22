@@ -21,12 +21,6 @@ public class TelaChamado extends javax.swing.JFrame {
 
 private void carregarCombos() {
     try {
-        Controller.ControllerFuncionario ctrlFunc = new Controller.ControllerFuncionario();
-        cbFuncionario.removeAllItems();
-        for (Model.ModelFuncionario f : ctrlFunc.listar()) {
-        cbFuncionario.addItem(f.getIdFuncionario() + " - " + f.getNome());
-        }
-
         Controller.ControllerSetor ctrlSetor = new Controller.ControllerSetor();
         cbSetor.removeAllItems();
         for (Model.ModelSetor s : ctrlSetor.listar()) {
@@ -53,7 +47,6 @@ private void carregarCombos() {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        cbFuncionario = new javax.swing.JComboBox<>();
         cbSetor = new javax.swing.JComboBox<>();
         cbTipoImpacto = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -61,13 +54,15 @@ private void carregarCombos() {
         btnSalvar = new javax.swing.JButton();
         btnVoltar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        txtIdFuncionario = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("Tela Chamado");
-
-        cbFuncionario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         cbSetor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -93,6 +88,18 @@ private void carregarCombos() {
 
         jLabel2.setText("Descrição:");
 
+        jLabel3.setText("id:");
+
+        txtIdFuncionario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIdFuncionarioActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("Setor:");
+
+        jLabel5.setText("Gravidade:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -100,20 +107,25 @@ private void carregarCombos() {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(120, 120, 120)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(96, 96, 96)
+                                .addGap(13, 13, 13)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5))
+                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(cbSetor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cbFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cbTipoImpacto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(cbTipoImpacto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtIdFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(120, 120, 120)
+                        .addComponent(jLabel1)))
                 .addContainerGap(88, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
@@ -128,11 +140,17 @@ private void carregarCombos() {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(cbFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtIdFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbSetor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cbSetor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cbTipoImpacto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbTipoImpacto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -141,7 +159,7 @@ private void carregarCombos() {
                             .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnSalvar)
-                        .addContainerGap(45, Short.MAX_VALUE))
+                        .addContainerGap(42, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnVoltar)
@@ -152,13 +170,13 @@ private void carregarCombos() {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-    if (txtDescricao.getText().trim().isEmpty() || cbFuncionario.getSelectedItem() == null || cbSetor.getSelectedItem() == null) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Preencha a descrição e selecione os campos obrigatórios!");
+    if (txtIdFuncionario.getText().trim().isEmpty() || txtDescricao.getText().trim().isEmpty() || cbSetor.getSelectedItem() == null) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Informe o ID do funcionário, a descrição e selecione o setor!");
         return;
     }
 
     try {
-        int idFuncionario = Integer.parseInt(cbFuncionario.getSelectedItem().toString().split(" - ")[0]);
+        int idFuncionario = Integer.parseInt(txtIdFuncionario.getText().trim());
         int idSetor = Integer.parseInt(cbSetor.getSelectedItem().toString().split(" - ")[0]);
         String impacto = cbTipoImpacto.getSelectedItem().toString();
         String descricao = txtDescricao.getText().trim();
@@ -172,14 +190,21 @@ private void carregarCombos() {
 
         javax.swing.JOptionPane.showMessageDialog(this, "Chamado registrado com sucesso!");
         txtDescricao.setText("");
+        txtIdFuncionario.setText("");
+    } catch (NumberFormatException e) {
+        javax.swing.JOptionPane.showMessageDialog(this, "O ID do funcionário deve ser um número válido!");
     } catch (Exception e) {
         javax.swing.JOptionPane.showMessageDialog(this, "Erro ao registrar chamado: " + e.getMessage());
-            }
+    }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
     this.dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
+
+    private void txtIdFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdFuncionarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdFuncionarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -219,12 +244,15 @@ private void carregarCombos() {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSalvar;
     private javax.swing.JButton btnVoltar;
-    private javax.swing.JComboBox<String> cbFuncionario;
     private javax.swing.JComboBox<String> cbSetor;
     private javax.swing.JComboBox<String> cbTipoImpacto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea txtDescricao;
+    private javax.swing.JTextField txtIdFuncionario;
     // End of variables declaration//GEN-END:variables
 }
