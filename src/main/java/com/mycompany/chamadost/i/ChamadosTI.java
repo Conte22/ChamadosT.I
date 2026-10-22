@@ -21,7 +21,6 @@ public class ChamadosTI {
                 System.out.println("ID: " + s.getIdSetor() + " | Nome: " + s.getNomeSetor() + " | Ramal: " + s.getRamal());
             }
 
-            // ABRIR A TELA APÓS O TESTE:
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
                     new TelaMenuInicial().setVisible(true);

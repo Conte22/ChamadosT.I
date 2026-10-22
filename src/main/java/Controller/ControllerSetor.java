@@ -1,13 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Controller;
-
-/**
- *
- * @author gabriel.conte
- */
 
 import Model.ModelSetor;
 import com.mycompany.chamadost.i.Conexao;
@@ -47,11 +38,11 @@ public class ControllerSetor {
         return lista;
     }
 
-    public void cadastrarSetor(ModelSetor novoSetor) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    public void cadastrarSetor(ModelSetor novoSetor) throws SQLException {
+        salvar(novoSetor);
     }
 
-    public List<ModelSetor> listarSetores() {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    public List<ModelSetor> listarSetores() throws SQLException {
+        return listar();
     }
 }
