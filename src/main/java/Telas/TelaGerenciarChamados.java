@@ -13,9 +13,25 @@ public class TelaGerenciarChamados extends javax.swing.JFrame {
     /**
      * Creates new form TelaGerenciarChamados
      */
-  public TelaGerenciarChamados() {
+    public TelaGerenciarChamados() {
         initComponents();
+        
+        // 1. Centraliza a janela no monitor
         this.setLocationRelativeTo(null); 
+
+        // 2. Impede que o botão X encerre o Java
+        this.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+
+        // 3. Ao clicar no X, fecha esta tela e abre a TelaPainelTI
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                new TelaPainelTI().setVisible(true); 
+                dispose();
+            }
+        });
+
+        // 4. Carrega os registros do PostgreSQL na tabela
         carregarTabela(); 
     }
 
@@ -36,7 +52,7 @@ public class TelaGerenciarChamados extends javax.swing.JFrame {
                     c.getTipoImpacto(),
                     c.getDescricao(),
                     c.getStatus(),
-                    c.getNomeSetor(),       
+                    c.getNomeSetor(),        
                     c.getNomeFuncionario()  
                 });
             }
