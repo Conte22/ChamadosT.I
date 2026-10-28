@@ -15,7 +15,18 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
      */
     public TelaCadastroFuncionario() {
         initComponents();
-        this.setLocationRelativeTo(null);
+        
+        this.setLocationRelativeTo(null); 
+
+        this.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                new TelaPainelTI().setVisible(true); 
+                dispose();
+            }
+        });
         carregarSetores(); 
     }
 

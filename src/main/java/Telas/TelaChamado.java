@@ -13,37 +13,44 @@ public class TelaChamado extends javax.swing.JFrame {
     /**
      * Creates new form TelaChamado
      */
-  public TelaChamado() {
-    initComponents();
-    this.setLocationRelativeTo(null); 
-    carregarCombos(); 
-}
+    public TelaChamado() {
+        initComponents();
+        this.setLocationRelativeTo(null); 
+        this.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                new TelaMenuInicial().setVisible(true); 
+                dispose();
+            }
+        });
 
-private void carregarCombos() {
- try {
-        Controller.ControllerFuncionario ctrlFunc = new Controller.ControllerFuncionario();
-        cbFuncionario.removeAllItems();
-        for (Model.ModelFuncionario f : ctrlFunc.listar()) {
-            cbFuncionario.addItem(f.getIdFuncionario() + " - " + f.getNome());
-        }
-
-        Controller.ControllerSetor ctrlSetor = new Controller.ControllerSetor();
-        cbSetor.removeAllItems();
-        for (Model.ModelSetor s : ctrlSetor.listar()) {
-            cbSetor.addItem(s.getIdSetor() + " - " + s.getNomeSetor());
-        }
-
-        cbTipoImpacto.removeAllItems();
-        cbTipoImpacto.addItem("Baixo");
-        cbTipoImpacto.addItem("Médio");
-        cbTipoImpacto.addItem("Alto");
-        cbTipoImpacto.addItem("Crítico");
-    } catch (Exception e) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Erro ao carregar dados: " + e.getMessage());
+        carregarCombos(); 
     }
-}
 
+    private void carregarCombos() {
+        try {
+            Controller.ControllerFuncionario ctrlFunc = new Controller.ControllerFuncionario();
+            cbFuncionario.removeAllItems();
+            for (Model.ModelFuncionario f : ctrlFunc.listar()) {
+                cbFuncionario.addItem(f.getIdFuncionario() + " - " + f.getNome());
+            }
 
+            Controller.ControllerSetor ctrlSetor = new Controller.ControllerSetor();
+            cbSetor.removeAllItems();
+            for (Model.ModelSetor s : ctrlSetor.listar()) {
+                cbSetor.addItem(s.getIdSetor() + " - " + s.getNomeSetor());
+            }
+
+            cbTipoImpacto.removeAllItems();
+            cbTipoImpacto.addItem("Baixo");
+            cbTipoImpacto.addItem("Médio");
+            cbTipoImpacto.addItem("Alto");
+            cbTipoImpacto.addItem("Crítico");
+        } catch (Exception e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Erro ao carregar dados: " + e.getMessage());
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
