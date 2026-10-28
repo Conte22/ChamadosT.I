@@ -14,8 +14,11 @@ public class TelaPainelTI extends javax.swing.JFrame {
      * Creates new form TelaPainelTI
      */
     public TelaPainelTI() {
-        initComponents();
-    }
+initComponents();
+    
+this.setLocationRelativeTo(null); 
+    
+  }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -107,9 +110,9 @@ public class TelaPainelTI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnGerenciarChamadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGerenciarChamadosActionPerformed
-        TelaGerenciarChamados telaGerenciar = new TelaGerenciarChamados();
-        telaGerenciar.setVisible(true);
-        // TODO add your handling code here:
+    TelaGerenciarChamados telaGerenciar = new TelaGerenciarChamados();
+    telaGerenciar.setVisible(true);
+    this.dispose();
     }//GEN-LAST:event_btnGerenciarChamadosActionPerformed
 
     private void btnCadastrarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarFuncionarioActionPerformed
