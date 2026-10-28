@@ -14,33 +14,36 @@ public class TelaGerenciarChamados extends javax.swing.JFrame {
      * Creates new form TelaGerenciarChamados
      */
   public TelaGerenciarChamados() {
-    initComponents();
-    this.setLocationRelativeTo(null); 
-    carregarTabelaChamados(); 
-}
-private void carregarTabelaChamados() {
-    try {
-        javax.swing.table.DefaultTableModel modelo = (javax.swing.table.DefaultTableModel) tblChamados.getModel();
-        modelo.setRowCount(0); 
-
-        Controller.ControllerChamado controller = new Controller.ControllerChamado();
-        java.util.List<Model.ModelChamado> lista = controller.listar();
-
-        for (Model.ModelChamado c : lista) {
-            modelo.addRow(new Object[]{
-                c.getIdChamado(),
-                c.getTipoImpacto(), 
-                c.getDescricao(),
-                c.getStatus(),
-                c.getIdFuncionario(),
-                c.getIdSetor()
-            });
-        }
-    } catch (Exception e) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Erro ao carregar chamados: " + e.getMessage());
-    
+        initComponents();
+        this.setLocationRelativeTo(null); 
+        carregarTabela(); 
     }
-}
+
+    public void carregarTabela() {
+        try {
+            javax.swing.table.DefaultTableModel modelo = (javax.swing.table.DefaultTableModel) tblChamados.getModel();
+            modelo.setNumRows(0);
+
+            modelo.setColumnIdentifiers(new String[]{
+                "ID", "Prioridade", "Descrição", "Estado", "Setor", "Funcionário"
+            });
+
+            Controller.ControllerChamado controller = new Controller.ControllerChamado();
+
+            for (Model.ModelChamado c : controller.listarComNomes()) {
+                modelo.addRow(new Object[]{
+                    c.getIdChamado(),
+                    c.getTipoImpacto(),
+                    c.getDescricao(),
+                    c.getStatus(),
+                    c.getNomeSetor(),       
+                    c.getNomeFuncionario()  
+                });
+            }
+        } catch (Exception e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Erro ao carregar chamados: " + e.getMessage());
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
