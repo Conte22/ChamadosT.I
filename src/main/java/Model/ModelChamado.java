@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
  */
 public class ModelChamado {
 
-    private int idChamado;
+private int idChamado;
     private int idFuncionario;
     private int idSetor;
     private String tipoImpacto;
@@ -20,85 +20,64 @@ public class ModelChamado {
     private String status;
     private LocalDateTime dataAbertura;
 
+    private String nomeSetor;
+    private String nomeFuncionario;
+
     public ModelChamado() {
     }
 
-    public ModelChamado(int idChamado,
-                int idFuncionario, 
-                int idSetor, 
-                String tipoImpacto, 
-                String descricao, 
-                String status, 
-                LocalDateTime dataAbertura) 
-    {
+    public ModelChamado(int idChamado, int idFuncionario, int idSetor, String tipoImpacto, String descricao, String status, LocalDateTime dataAbertura) {
         this.idChamado = idChamado;
-        
         this.idFuncionario = idFuncionario;
-        
         this.idSetor = idSetor;
-        
         this.tipoImpacto = tipoImpacto;
-        
         this.descricao = descricao;
-        
         this.status = status;
-        
         this.dataAbertura = dataAbertura;
     }
 
-    public int getIdChamado() {
-        return idChamado;
-    }
+    public int getIdChamado()
+    { return idChamado; }
+    public void setIdChamado(int idChamado)
+    { this.idChamado = idChamado; }
 
-    public void setIdChamado(int idChamado) {
-        this.idChamado = idChamado;
-    }
+    public int getIdFuncionario() 
+    { return idFuncionario; }
+    public void setIdFuncionario(int idFuncionario) 
+    { this.idFuncionario = idFuncionario; }
 
-    public int getIdFuncionario() {
-        return idFuncionario;
-    }
+    public int getIdSetor()
+    { return idSetor; }
+    public void setIdSetor(int idSetor) 
+    { this.idSetor = idSetor; }
 
-    public void setIdFuncionario(int idFuncionario) {
-        this.idFuncionario = idFuncionario;
-    }
+    public String getTipoImpacto()
+    { return tipoImpacto; }
+    public void setTipoImpacto(String tipoImpacto) 
+    { this.tipoImpacto = tipoImpacto; }
 
-    public int getIdSetor() {
-        return idSetor;
-    }
+    public String getDescricao() 
+    { return descricao; }
+    public void setDescricao(String descricao)
+    { this.descricao = descricao; }
 
-    public void setIdSetor(int idSetor) {
-        this.idSetor = idSetor;
-    }
+    public String getStatus()
+    { return status; }
+    public void setStatus(String status) 
+    { this.status = status; }
 
-    public String getTipoImpacto() {
-        return tipoImpacto;
-    }
+    public LocalDateTime getDataAbertura() 
+    { return dataAbertura; }
+    public void setDataAbertura(LocalDateTime dataAbertura)
+    { this.dataAbertura = dataAbertura; }
 
-    public void setTipoImpacto(String tipoImpacto) {
-        this.tipoImpacto = tipoImpacto;
-    }
+    public String getNomeSetor() 
+    { return nomeSetor; }
+    public void setNomeSetor(String nomeSetor)
+    { this.nomeSetor = nomeSetor; }
 
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public LocalDateTime getDataAbertura() {
-        return dataAbertura;
-    }
-
-    public void setDataAbertura(LocalDateTime dataAbertura) {
-        this.dataAbertura = dataAbertura;
-    }
+    public String getNomeFuncionario() 
+    { return nomeFuncionario; }
+    public void setNomeFuncionario(String nomeFuncionario)
+    { this.nomeFuncionario = nomeFuncionario; }
 }
