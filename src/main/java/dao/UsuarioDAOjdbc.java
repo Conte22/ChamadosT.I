@@ -1,7 +1,7 @@
 package dao;
 
-import banco.Conexao;
-import entidades.Usuario;
+import com.mycompany.chamadost.i.Conexao;
+import Model.Usuario;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -9,28 +9,29 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class UsuarioDAOjdbc implements UsuarioDAO {
 
     private static final String SQL_SALVAR
             = "INSERT INTO usuario (nome, login, senha_hash) VALUES (?, ?, ?)";
 
+    private static final String SQL_AUTENTICAR
+            = "SELECT id, nome, login FROM usuario WHERE login = ? AND senha_hash = ?";
+
     @Override
     public Usuario autenticar(String login, String senha) throws SQLException {
-        // FALHA DE SQL INJECTION: login entra direto na consulta.
-        // Tente logar com    admin' --    para ver o problema.
-        String sql = "SELECT id, nome, login FROM usuario WHERE login = '" + login
-                + "' AND senha_hash = '" + gerarHash(senha) + "'";
-
         try (Connection conexao = Conexao.conectar();
-             Statement comando = conexao.createStatement();
-             ResultSet resultado = comando.executeQuery(sql)) {
+             PreparedStatement comando = conexao.prepareStatement(SQL_AUTENTICAR)) {
 
-            if (resultado.next()) {
-                return mapearUsuario(resultado);
+            comando.setString(1, login);
+            comando.setString(2, gerarHash(senha));
+
+            try (ResultSet resultado = comando.executeQuery()) {
+                if (resultado.next()) {
+                    return mapearUsuario(resultado);
+                }
+                return null;
             }
-            return null;
         }
     }
 

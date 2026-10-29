@@ -1,9 +1,8 @@
-package controladores;
+package Controller;
 
-import apoio.Mensagem;
 import dao.UsuarioDAO;
 import dao.UsuarioDAOjdbc;
-import entidades.Usuario;
+import Model.Usuario;
 import java.sql.SQLException;
 
 public class ControllerUsuario {
@@ -14,7 +13,7 @@ public class ControllerUsuario {
         try {
             return usuarioDAO.autenticar(login, senha);
         } catch (SQLException ex) {
-            Mensagem.erro("Erro ao autenticar usuário.");
+            javax.swing.JOptionPane.showMessageDialog(null, "Erro ao autenticar usuário: " + ex.getMessage());
             return null;
         }
     }
@@ -23,7 +22,7 @@ public class ControllerUsuario {
         try {
             usuarioDAO.salvar(nome, login, senha);
         } catch (SQLException ex) {
-            Mensagem.erro("Erro ao salvar usuário.");
+            javax.swing.JOptionPane.showMessageDialog(null, "Erro ao salvar usuário: " + ex.getMessage());
         }
     }
 

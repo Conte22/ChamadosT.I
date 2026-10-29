@@ -1,6 +1,6 @@
 package dao;
 
-import entidades.Usuario;
+import Model.Usuario;
 import java.sql.SQLException;
 
 public interface UsuarioDAO {

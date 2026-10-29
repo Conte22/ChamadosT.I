@@ -21,4 +21,8 @@ public class Conexao {
     public static Connection getConexao() throws SQLException {
         return DriverManager.getConnection(URL, USUARIO, SENHA);
     }
+
+    public static Connection conectar() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
