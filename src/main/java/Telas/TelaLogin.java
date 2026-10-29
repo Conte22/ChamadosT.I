@@ -1,19 +1,16 @@
-package telas;
+package Telas;
 
-import com.formdev.flatlaf.themes.FlatMacDarkLaf;
-import controladores.ControlaUsuario;
-import entidades.Usuario;
+import Controller.ControllerUsuario;
+import Model.Usuario;
 
 public class TelaLogin extends javax.swing.JFrame {
 
-    private final ControlaUsuario controladorUsuario = new ControlaUsuario();
+    private final ControllerUsuario controladorUsuario = new ControllerUsuario();
 
     public TelaLogin() {
         initComponents();
-        // Enter em qualquer campo aciona o botão "Entrar".
         getRootPane().setDefaultButton(btnEntrar);
     }
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -95,40 +92,33 @@ public class TelaLogin extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    // ---------------------------------------------------------------
-    // A partir daqui, nada é gerado pela IDE.
-    // ---------------------------------------------------------------
+private void entrar() {
+    String login = txtLogin.getText().trim();
+    String senha = new String(txtSenha.getPassword());
 
-    private void entrar() {
-        String login = txtLogin.getText().trim();
-        // getPassword() devolve char[] (getText() está deprecated).
-        String senha = new String(txtSenha.getPassword());
-
-        String erro = controladorUsuario.validar(login, senha);
-        if (erro != null) {
-            lblMensagem.setText(erro);
-            return;
-        }
-
-        Usuario usuario = controladorUsuario.autenticar(login, senha);
-        if (usuario == null) {
-            // Mensagem genérica de propósito.
-            lblMensagem.setText("Login ou senha inválidos.");
-            txtSenha.setText("");
-            txtSenha.requestFocus();
-            return;
-        }
-
-        TelaMenu telaMenu = new TelaMenu();
-        telaMenu.setVisible(true);
-        dispose();
+    String erro = controladorUsuario.validar(login, senha);
+    if (erro != null) {
+        lblMensagem.setText(erro);
+        return;
     }
+
+    Usuario usuario = controladorUsuario.autenticar(login, senha);
+    if (usuario == null) {
+        lblMensagem.setText("Login ou senha inválidos.");
+        txtSenha.setText("");
+        txtSenha.requestFocus();
+        return;
+    }
+
+    TelaMenuInicial menu = new TelaMenuInicial();
+    menu.setVisible(true);
+    dispose(); 
+}
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        FlatMacDarkLaf.setup(); // mesmo tema do resto do ChupetaFlix
         java.awt.EventQueue.invokeLater(() -> new TelaLogin().setVisible(true));
     }
 

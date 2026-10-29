@@ -2,9 +2,6 @@ package dao;
 
 import com.mycompany.chamadost.i.Conexao;
 import Model.Usuario;
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,10 +10,10 @@ import java.sql.SQLException;
 public class UsuarioDAOjdbc implements UsuarioDAO {
 
     private static final String SQL_SALVAR
-            = "INSERT INTO usuario (nome, login, senha_hash) VALUES (?, ?, ?)";
+            = "INSERT INTO usuario (nome, login, senha) VALUES (?, ?, ?)";
 
     private static final String SQL_AUTENTICAR
-            = "SELECT id, nome, login FROM usuario WHERE login = ? AND senha_hash = ?";
+            = "SELECT id, nome, login FROM usuario WHERE login = ? AND senha = ?";
 
     @Override
     public Usuario autenticar(String login, String senha) throws SQLException {
@@ -24,7 +21,7 @@ public class UsuarioDAOjdbc implements UsuarioDAO {
              PreparedStatement comando = conexao.prepareStatement(SQL_AUTENTICAR)) {
 
             comando.setString(1, login);
-            comando.setString(2, gerarHash(senha));
+            comando.setString(2, senha);
 
             try (ResultSet resultado = comando.executeQuery()) {
                 if (resultado.next()) {
@@ -42,7 +39,7 @@ public class UsuarioDAOjdbc implements UsuarioDAO {
 
             comando.setString(1, nome);
             comando.setString(2, login);
-            comando.setString(3, gerarHash(senha));
+            comando.setString(3, senha);
             comando.executeUpdate();
         }
     }
@@ -54,19 +51,5 @@ public class UsuarioDAOjdbc implements UsuarioDAO {
         );
         usuario.setCodigo(resultado.getInt("id"));
         return usuario;
-    }
-
-    private String gerarHash(String senha) {
-        try {
-            MessageDigest digest = MessageDigest.getInstance("SHA-256");
-            byte[] bytes = digest.digest(senha.getBytes(StandardCharsets.UTF_8));
-            StringBuilder hex = new StringBuilder();
-            for (byte b : bytes) {
-                hex.append(String.format("%02x", b));
-            }
-            return hex.toString();
-        } catch (NoSuchAlgorithmException e) {
-            throw new IllegalStateException("SHA-256 indisponível na JVM", e);
-        }
     }
 }
