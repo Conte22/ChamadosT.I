@@ -5,7 +5,7 @@ import Telas.TelaLogin;
 public class ChamadosTI {
 
     public static void main(String[] args) {
-        // Inicia o sistema diretamente pela TelaLogin
+        // Abre a tela de login ao iniciar o sistema
         java.awt.EventQueue.invokeLater(() -> {
             new TelaLogin().setVisible(true);
         });
