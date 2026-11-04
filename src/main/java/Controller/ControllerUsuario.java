@@ -1,3 +1,4 @@
+
 package Controller;
 
 import dao.UsuarioDAO;
@@ -11,9 +12,9 @@ public class ControllerUsuario {
     private final UsuarioDAO usuarioDAO = new UsuarioDAOjdbc();
 
     // Realiza o login do usuário
-    public Usuario autenticar(String login, String senha) {
+    public Usuario autenticar(String login) {
         try {
-            return usuarioDAO.autenticar(login, senha);
+            return usuarioDAO.autenticar(login);
 
         } catch (SQLException erro) {
             javax.swing.JOptionPane.showMessageDialog(
@@ -24,9 +25,9 @@ public class ControllerUsuario {
     }
 
     // Salva um novo usuário
-    public void salvar(String nome, String login, String senha) {
+    public void salvar(String nome, String login) {
         try {
-            usuarioDAO.salvar(nome, login, senha);
+            usuarioDAO.salvar(nome, login);
 
         } catch (SQLException erro) {
             javax.swing.JOptionPane.showMessageDialog(
@@ -35,15 +36,11 @@ public class ControllerUsuario {
         }
     }
 
-    // Verifica se os campos foram preenchidos
-    public String validar(String login, String senha) {
+    // Verifica se o login foi preenchido
+    public String validar(String login) {
 
         if (login == null || login.trim().isEmpty()) {
             return "Informe o login.";
-        }
-
-        if (senha == null || senha.isEmpty()) {
-            return "Informe a senha.";
         }
 
         return null;
