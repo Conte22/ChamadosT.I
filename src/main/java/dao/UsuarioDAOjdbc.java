@@ -1,3 +1,4 @@
+
 package dao;
 
 import Model.Usuario;
@@ -12,34 +13,32 @@ public class UsuarioDAOjdbc implements UsuarioDAO {
 
     // Comando para cadastrar um usuário
     private static final String SQL_SALVAR =
-            "INSERT INTO usuario (nome, login, senha) VALUES (?, ?, ?)";
+            "INSERT INTO usuario (nome, login) VALUES (?, ?)";
 
-    // Comando para autenticar um usuário
+    // Comando para localizar um usuário pelo login
     private static final String SQL_AUTENTICAR =
-            "SELECT id, nome, login FROM usuario WHERE login = ? AND senha = ?";
+            "SELECT id, nome, login FROM usuario WHERE login = ?";
 
     @Override
-    public void salvar(String nome, String login, String senha) throws SQLException {
+    public void salvar(String nome, String login) throws SQLException {
 
         try (Connection conexao = Conexao.getConexao();
              PreparedStatement comando = conexao.prepareStatement(SQL_SALVAR)) {
 
             comando.setString(1, nome);
             comando.setString(2, login);
-            comando.setString(3, senha);
 
             comando.executeUpdate();
         }
     }
 
     @Override
-    public Usuario autenticar(String login, String senha) throws SQLException {
+    public Usuario autenticar(String login) throws SQLException {
 
         try (Connection conexao = Conexao.getConexao();
              PreparedStatement comando = conexao.prepareStatement(SQL_AUTENTICAR)) {
 
             comando.setString(1, login);
-            comando.setString(2, senha);
 
             try (ResultSet resultado = comando.executeQuery()) {
 
