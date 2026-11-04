@@ -1,3 +1,4 @@
+
 package Controller;
 
 import Model.ModelChamado;
@@ -15,24 +16,25 @@ public class ControllerChamado {
         String sql = "INSERT INTO chamado (id_funcionario, id_setor, tipo_impacto, descricao, status, data_abertura) "
                    + "VALUES (?, ?, ?, ?, ?, ?)";
 
-        try (Connection conn = Conexao.getConexao();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+        try (Connection conexao = Conexao.getConexao();
+             PreparedStatement comando = conexao.prepareStatement(sql)) {
 
-            ps.setInt(1, chamado.getIdFuncionario());
-            ps.setInt(2, chamado.getIdSetor());
-            ps.setString(3, chamado.getTipoImpacto());
-            ps.setString(4, chamado.getDescricao());
-            ps.setString(5, chamado.getStatus());
-            ps.setObject(6, chamado.getDataAbertura());
+            comando.setInt(1, chamado.getIdFuncionario());
+            comando.setInt(2, chamado.getIdSetor());
+            comando.setString(3, chamado.getTipoImpacto());
+            comando.setString(4, chamado.getDescricao());
+            comando.setString(5, chamado.getStatus());
+            comando.setObject(6, chamado.getDataAbertura());
 
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException("Erro ao salvar chamado no banco de dados: " + e.getMessage(), e);
+            comando.executeUpdate();
+
+        } catch (SQLException erro) {
+            throw new RuntimeException("Erro ao salvar chamado no banco de dados: " + erro.getMessage(), erro);
         }
     }
 
     public List<ModelChamado> listarComNomes() {
-        List<ModelChamado> lista = new ArrayList<>();
+        List<ModelChamado> chamados = new ArrayList<>();
 
         String sql = "SELECT c.id_chamado, c.tipo_impacto AS prioridade, c.descricao, "
                    + "c.status AS estado, s.nome_setor AS setor, f.nome AS funcionario "
@@ -41,25 +43,27 @@ public class ControllerChamado {
                    + "INNER JOIN funcionario f ON c.id_funcionario = f.id_funcionario "
                    + "ORDER BY c.id_chamado";
 
-        try (Connection conn = Conexao.getConexao();
-             PreparedStatement ps = conn.prepareStatement(sql);
-             ResultSet rs = ps.executeQuery()) {
+        try (Connection conexao = Conexao.getConexao();
+             PreparedStatement comando = conexao.prepareStatement(sql);
+             ResultSet resultado = comando.executeQuery()) {
 
-            while (rs.next()) {
-                ModelChamado c = new ModelChamado();
-                c.setIdChamado(rs.getInt("id_chamado"));
-                c.setTipoImpacto(rs.getString("prioridade"));
-                c.setDescricao(rs.getString("descricao"));
-                c.setStatus(rs.getString("estado"));
-                c.setNomeSetor(rs.getString("setor"));
-                c.setNomeFuncionario(rs.getString("funcionario"));
+            while (resultado.next()) {
+                ModelChamado chamado = new ModelChamado();
 
-                lista.add(c);
+                chamado.setIdChamado(resultado.getInt("id_chamado"));
+                chamado.setTipoImpacto(resultado.getString("prioridade"));
+                chamado.setDescricao(resultado.getString("descricao"));
+                chamado.setStatus(resultado.getString("estado"));
+                chamado.setNomeSetor(resultado.getString("setor"));
+                chamado.setNomeFuncionario(resultado.getString("funcionario"));
+
+                chamados.add(chamado);
             }
-        } catch (SQLException e) {
-            System.err.println("Erro ao listar chamados com nomes: " + e.getMessage());
+
+        } catch (SQLException erro) {
+            System.err.println("Erro ao listar chamados com nomes: " + erro.getMessage());
         }
 
-        return lista;
+        return chamados;
     }
 }

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Controller;
 
 import Model.ModelFuncionario;
@@ -13,34 +9,45 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author gabriel.conte
- */
 public class ControllerFuncionario {
 
-    public void salvar(ModelFuncionario f) throws SQLException {
+    public void salvar(ModelFuncionario funcionario) throws SQLException {
         String sql = "INSERT INTO funcionario (id_setor, nome, email, telefone) VALUES (?, ?, ?, ?)";
-        try (Connection conn = Conexao.getConexao();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, f.getIdSetorOrigem());
-            stmt.setString(2, f.getNome());
-            stmt.setString(3, f.getEmail());
-            stmt.setString(4, f.getTelefone());
-            stmt.executeUpdate();
+
+        try (Connection conexao = Conexao.getConexao();
+             PreparedStatement comando = conexao.prepareStatement(sql)) {
+
+            comando.setInt(1, funcionario.getIdSetorOrigem());
+            comando.setString(2, funcionario.getNome());
+            comando.setString(3, funcionario.getEmail());
+            comando.setString(4, funcionario.getTelefone());
+
+            comando.executeUpdate();
         }
     }
 
     public List<ModelFuncionario> listar() throws SQLException {
-        List<ModelFuncionario> lista = new ArrayList<>();
-        String sql = "SELECT * FROM funcionario";
-        try (Connection conn = Conexao.getConexao();
-             PreparedStatement stmt = conn.prepareStatement(sql);
-             ResultSet rs = stmt.executeQuery()) {
-            while (rs.next()) {
-                lista.add(new ModelFuncionario(rs.getInt("id_funcionario"), rs.getInt("id_setor"), rs.getString("nome"), rs.getString("email"), rs.getString("telefone")));
+        List<ModelFuncionario> funcionarios = new ArrayList<>();
+
+        String sql = "SELECT id_funcionario, id_setor, nome, email, telefone FROM funcionario";
+
+        try (Connection conexao = Conexao.getConexao();
+             PreparedStatement comando = conexao.prepareStatement(sql);
+             ResultSet resultado = comando.executeQuery()) {
+
+            while (resultado.next()) {
+                ModelFuncionario funcionario = new ModelFuncionario(
+                    resultado.getInt("id_funcionario"),
+                    resultado.getInt("id_setor"),
+                    resultado.getString("nome"),
+                    resultado.getString("email"),
+                    resultado.getString("telefone")
+                );
+
+                funcionarios.add(funcionario);
             }
         }
-        return lista;
+
+        return funcionarios;
     }
 }
