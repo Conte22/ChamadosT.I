@@ -1,13 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Model;
 
-/**
- *
- * @author gabriel.conte
- */
 public class ModelFuncionario {
 
     private int idFuncionario;
@@ -19,12 +11,9 @@ public class ModelFuncionario {
     public ModelFuncionario() {
     }
 
-    public ModelFuncionario(int idFuncionario,
-                        int idSetorOrigem,
-                        String nome, 
-                        String email, 
-                        String telefone) 
-    {
+    public ModelFuncionario(int idFuncionario, int idSetorOrigem,
+            String nome, String email, String telefone) {
+
         this.idFuncionario = idFuncionario;
         this.idSetorOrigem = idSetorOrigem;
         this.nome = nome;

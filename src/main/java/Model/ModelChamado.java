@@ -1,18 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Model;
 
 import java.time.LocalDateTime;
 
-/**
- *
- * @author gabriel.conte
- */
 public class ModelChamado {
 
-private int idChamado;
+    private int idChamado;
     private int idFuncionario;
     private int idSetor;
     private String tipoImpacto;
@@ -26,7 +18,10 @@ private int idChamado;
     public ModelChamado() {
     }
 
-    public ModelChamado(int idChamado, int idFuncionario, int idSetor, String tipoImpacto, String descricao, String status, LocalDateTime dataAbertura) {
+    public ModelChamado(int idChamado, int idFuncionario, int idSetor,
+            String tipoImpacto, String descricao, String status,
+            LocalDateTime dataAbertura) {
+
         this.idChamado = idChamado;
         this.idFuncionario = idFuncionario;
         this.idSetor = idSetor;
@@ -36,48 +31,75 @@ private int idChamado;
         this.dataAbertura = dataAbertura;
     }
 
-    public int getIdChamado()
-    { return idChamado; }
-    public void setIdChamado(int idChamado)
-    { this.idChamado = idChamado; }
+    public int getIdChamado() {
+        return idChamado;
+    }
 
-    public int getIdFuncionario() 
-    { return idFuncionario; }
-    public void setIdFuncionario(int idFuncionario) 
-    { this.idFuncionario = idFuncionario; }
+    public void setIdChamado(int idChamado) {
+        this.idChamado = idChamado;
+    }
 
-    public int getIdSetor()
-    { return idSetor; }
-    public void setIdSetor(int idSetor) 
-    { this.idSetor = idSetor; }
+    public int getIdFuncionario() {
+        return idFuncionario;
+    }
 
-    public String getTipoImpacto()
-    { return tipoImpacto; }
-    public void setTipoImpacto(String tipoImpacto) 
-    { this.tipoImpacto = tipoImpacto; }
+    public void setIdFuncionario(int idFuncionario) {
+        this.idFuncionario = idFuncionario;
+    }
 
-    public String getDescricao() 
-    { return descricao; }
-    public void setDescricao(String descricao)
-    { this.descricao = descricao; }
+    public int getIdSetor() {
+        return idSetor;
+    }
 
-    public String getStatus()
-    { return status; }
-    public void setStatus(String status) 
-    { this.status = status; }
+    public void setIdSetor(int idSetor) {
+        this.idSetor = idSetor;
+    }
 
-    public LocalDateTime getDataAbertura() 
-    { return dataAbertura; }
-    public void setDataAbertura(LocalDateTime dataAbertura)
-    { this.dataAbertura = dataAbertura; }
+    public String getTipoImpacto() {
+        return tipoImpacto;
+    }
 
-    public String getNomeSetor() 
-    { return nomeSetor; }
-    public void setNomeSetor(String nomeSetor)
-    { this.nomeSetor = nomeSetor; }
+    public void setTipoImpacto(String tipoImpacto) {
+        this.tipoImpacto = tipoImpacto;
+    }
 
-    public String getNomeFuncionario() 
-    { return nomeFuncionario; }
-    public void setNomeFuncionario(String nomeFuncionario)
-    { this.nomeFuncionario = nomeFuncionario; }
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public LocalDateTime getDataAbertura() {
+        return dataAbertura;
+    }
+
+    public void setDataAbertura(LocalDateTime dataAbertura) {
+        this.dataAbertura = dataAbertura;
+    }
+
+    public String getNomeSetor() {
+        return nomeSetor;
+    }
+
+    public void setNomeSetor(String nomeSetor) {
+        this.nomeSetor = nomeSetor;
+    }
+
+    public String getNomeFuncionario() {
+        return nomeFuncionario;
+    }
+
+    public void setNomeFuncionario(String nomeFuncionario) {
+        this.nomeFuncionario = nomeFuncionario;
+    }
 }
