@@ -8,13 +8,11 @@ import java.sql.SQLException;
 
 public class ControllerUsuario {
 
-    // Utiliza o DAO para acessar os usuários
     private final UsuarioDAO usuarioDAO = new UsuarioDAOjdbc();
 
-    // Realiza o login do usuário
-    public Usuario autenticar(String login) {
+    public Usuario autenticar(String login, String senha) {
         try {
-            return usuarioDAO.autenticar(login);
+            return usuarioDAO.autenticar(login, senha);
 
         } catch (SQLException erro) {
             javax.swing.JOptionPane.showMessageDialog(
@@ -24,10 +22,9 @@ public class ControllerUsuario {
         }
     }
 
-    // Salva um novo usuário
-    public void salvar(String nome, String login) {
+    public void salvar(String nome, String login, String senha) {
         try {
-            usuarioDAO.salvar(nome, login);
+            usuarioDAO.salvar(nome, login, senha);
 
         } catch (SQLException erro) {
             javax.swing.JOptionPane.showMessageDialog(
@@ -36,11 +33,14 @@ public class ControllerUsuario {
         }
     }
 
-    // Verifica se o login foi preenchido
-    public String validar(String login) {
+    public String validar(String login, String senha) {
 
         if (login == null || login.trim().isEmpty()) {
             return "Informe o login.";
+        }
+
+        if (senha == null || senha.trim().isEmpty()) {
+            return "Informe a senha.";
         }
 
         return null;
