@@ -1,35 +1,28 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Telas;
 
-/**
- *
- * @author gabriel.conte
- */
+import Model.Usuario;
+
 public class TelaGerenciarChamados extends javax.swing.JFrame {
+private Usuario usuario;
+    
+    
+public TelaGerenciarChamados(Usuario usuario) {
+    initComponents();
+    this.usuario = usuario;
 
-    /**
-     * Creates new form TelaGerenciarChamados
-     */
-    public TelaGerenciarChamados() {
-        initComponents();
-        
-        this.setLocationRelativeTo(null); 
+    this.setLocationRelativeTo(null);
+    this.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
-        this.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+    this.addWindowListener(new java.awt.event.WindowAdapter() {
+        @Override
+        public void windowClosing(java.awt.event.WindowEvent e) {
+            new TelaPainelTI(usuario).setVisible(true);
+            dispose();
+        }
+    });
 
-        this.addWindowListener(new java.awt.event.WindowAdapter() {
-            @Override
-            public void windowClosing(java.awt.event.WindowEvent e) {
-                new TelaPainelTI().setVisible(true); 
-                dispose();
-            }
-        });
-
-        carregarTabela(); 
-    }
+    carregarTabela();
+}
 
     public void carregarTabela() {
         try {
@@ -151,8 +144,7 @@ public class TelaGerenciarChamados extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaGerenciarChamados().setVisible(true);
-            }
+        new TelaLogin().setVisible(true);            }
         });
     }
 

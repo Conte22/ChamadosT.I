@@ -128,15 +128,16 @@ public TelaPainelTI(Usuario usuario) {
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnGerenciarChamadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGerenciarChamadosActionPerformed
-    TelaGerenciarChamados telaGerenciar = new TelaGerenciarChamados();
+    TelaGerenciarChamados telaGerenciar = new TelaGerenciarChamados(usuario);
     telaGerenciar.setVisible(true);
     this.dispose();
+
     }//GEN-LAST:event_btnGerenciarChamadosActionPerformed
 
     private void btnCadastrarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarFuncionarioActionPerformed
-        TelaCadastroFuncionario telaCadastro = new TelaCadastroFuncionario();
-        telaCadastro.setVisible(true);
-
+       TelaCadastroFuncionario telaCadastro = new TelaCadastroFuncionario(usuario);
+       telaCadastro.setVisible(true);
+       this.dispose();
     }//GEN-LAST:event_btnCadastrarFuncionarioActionPerformed
 
     /**
