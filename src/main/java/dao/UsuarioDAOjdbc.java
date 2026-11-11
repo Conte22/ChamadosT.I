@@ -17,22 +17,20 @@ public class UsuarioDAOjdbc implements UsuarioDAO {
             "SELECT id, nome, login, senha, tipo FROM usuario WHERE login = ? AND senha = ?";
 
     @Override
-    public void salvar(String nome, String login) throws SQLException {
+    public void salvar(String nome, String login, String senha) throws SQLException {
+
         try (Connection conexao = Conexao.getConexao();
              PreparedStatement comando = conexao.prepareStatement(SQL_SALVAR)) {
 
             comando.setString(1, nome);
             comando.setString(2, login);
+            comando.setString(3, senha);
 
             comando.executeUpdate();
         }
     }
 
     @Override
-    public Usuario autenticar(String login) throws SQLException {
-        return null;
-    }
-
     public Usuario autenticar(String login, String senha) throws SQLException {
 
         try (Connection conexao = Conexao.getConexao();
