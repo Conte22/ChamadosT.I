@@ -1,3 +1,4 @@
+
 package Model;
 
 public class Usuario {
@@ -5,6 +6,8 @@ public class Usuario {
     private int codigo;
     private String nome;
     private String login;
+    private String senha;
+    private String tipo;
 
     public Usuario(String nome, String login) {
         this.nome = nome;
@@ -33,6 +36,22 @@ public class Usuario {
 
     public void setLogin(String login) {
         this.login = login;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     @Override
