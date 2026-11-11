@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Telas;
-
+import Model.Usuario;
 /**
  *
  * @author gabriel.conte
@@ -13,10 +13,14 @@ public class TelaMenuInicial extends javax.swing.JFrame {
     /**
      * Creates new form TelaMenuInicial
      */
-    public TelaMenuInicial() {
+    private Usuario usuario;
+
+    public TelaMenuInicial(Usuario usuario) {
     initComponents();
-    this.setLocationRelativeTo(null);
-    }
+    this.usuario = usuario;
+
+    btnTI.setVisible(usuario.getTipo().equals("ADMIN"));
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
