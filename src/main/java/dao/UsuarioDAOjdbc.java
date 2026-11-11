@@ -14,7 +14,8 @@ public class UsuarioDAOjdbc implements UsuarioDAO {
             "INSERT INTO usuario (nome, login, senha, tipo) VALUES (?, ?, ?, 'COMUM')";
 
     private static final String SQL_AUTENTICAR =
-            "SELECT id, nome, login, senha, tipo FROM usuario WHERE login = ? AND senha = ?";
+            "SELECT id, id_funcionario, nome, login, senha, tipo "
+            + "FROM usuario WHERE login = ? AND senha = ?";
 
     @Override
     public void salvar(String nome, String login, String senha) throws SQLException {
@@ -48,6 +49,7 @@ public class UsuarioDAOjdbc implements UsuarioDAO {
                     );
 
                     usuario.setCodigo(resultado.getInt("id"));
+                    usuario.setIdFuncionario(resultado.getInt("id_funcionario"));
                     usuario.setSenha(resultado.getString("senha"));
                     usuario.setTipo(resultado.getString("tipo"));
 

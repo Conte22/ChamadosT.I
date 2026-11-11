@@ -1,9 +1,9 @@
-
 package Model;
 
 public class Usuario {
 
     private int codigo;
+    private int idFuncionario;
     private String nome;
     private String login;
     private String senha;
@@ -20,6 +20,14 @@ public class Usuario {
 
     public void setCodigo(int codigo) {
         this.codigo = codigo;
+    }
+
+    public int getIdFuncionario() {
+        return idFuncionario;
+    }
+
+    public void setIdFuncionario(int idFuncionario) {
+        this.idFuncionario = idFuncionario;
     }
 
     public String getNome() {
