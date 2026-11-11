@@ -11,7 +11,18 @@ package Telas;
 public class TelaChamado extends javax.swing.JFrame {
 
     private Model.Usuario usuario;
+public TelaChamado(Model.Usuario usuario) {
+    initComponents();
 
+    this.usuario = usuario;
+
+    setTitle("Abrir Chamado");
+    setSize(600, 450);
+    setLocationRelativeTo(null);
+    setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+    carregarCombos();
+}
 
 
     /**

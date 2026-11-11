@@ -109,9 +109,9 @@ public TelaMenuInicial(Usuario usuario) {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFuncionarioActionPerformed
-    TelaChamado telaChamado = new TelaChamado();
-    telaChamado.setVisible(true);
-    this.dispose();
+        TelaChamado telaChamado = new TelaChamado(usuario);
+        telaChamado.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnFuncionarioActionPerformed
 
     private void btnTIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTIActionPerformed
