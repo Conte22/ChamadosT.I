@@ -8,20 +8,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-// Implementa as operações de acesso aos usuários
 public class UsuarioDAOjdbc implements UsuarioDAO {
 
-    // Comando para cadastrar um usuário
     private static final String SQL_SALVAR =
-            "INSERT INTO usuario (nome, login) VALUES (?, ?)";
+            "INSERT INTO usuario (nome, login, senha, tipo) VALUES (?, ?, ?, 'COMUM')";
 
-    // Comando para localizar um usuário pelo login
     private static final String SQL_AUTENTICAR =
-            "SELECT id, nome, login FROM usuario WHERE login = ?";
+            "SELECT id, nome, login, senha, tipo FROM usuario WHERE login = ? AND senha = ?";
 
     @Override
     public void salvar(String nome, String login) throws SQLException {
-
         try (Connection conexao = Conexao.getConexao();
              PreparedStatement comando = conexao.prepareStatement(SQL_SALVAR)) {
 
@@ -34,11 +30,16 @@ public class UsuarioDAOjdbc implements UsuarioDAO {
 
     @Override
     public Usuario autenticar(String login) throws SQLException {
+        return null;
+    }
+
+    public Usuario autenticar(String login, String senha) throws SQLException {
 
         try (Connection conexao = Conexao.getConexao();
              PreparedStatement comando = conexao.prepareStatement(SQL_AUTENTICAR)) {
 
             comando.setString(1, login);
+            comando.setString(2, senha);
 
             try (ResultSet resultado = comando.executeQuery()) {
 
@@ -49,6 +50,8 @@ public class UsuarioDAOjdbc implements UsuarioDAO {
                     );
 
                     usuario.setCodigo(resultado.getInt("id"));
+                    usuario.setSenha(resultado.getString("senha"));
+                    usuario.setTipo(resultado.getString("tipo"));
 
                     return usuario;
                 }
