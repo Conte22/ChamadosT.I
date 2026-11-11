@@ -250,28 +250,42 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
         String nome = txtNome.getText().trim();
         String email = txtEmail.getText().trim();
         String telefone = txtTelefone.getText().trim();
+        String login = txtLogin.getText().trim();
+        String senha = txtSenha.getText().trim();
         String setorSelecionado = (String) cbSetor.getSelectedItem();
 
-if (nome.isEmpty() || email.isEmpty() || telefone.isEmpty() || setorSelecionado == null) {
-    javax.swing.JOptionPane.showMessageDialog(this, "Preencha todos os campos obrigatórios!");
+        if (nome.isEmpty() || email.isEmpty() || telefone.isEmpty()
+                || login.isEmpty() || senha.isEmpty()
+                || setorSelecionado == null) {
+
+            javax.swing.JOptionPane.showMessageDialog(
+                    this, "Preencha todos os campos obrigatórios!");
             return;
         }
 
-        // Extrai o id_setor da string da ComboBox (exemplo: "1 - T.I.")
         int idSetor = Integer.parseInt(setorSelecionado.split(" - ")[0]);
 
-        Model.ModelFuncionario funcionario = new Model.ModelFuncionario(0, idSetor, nome, email, telefone);
-        Controller.ControllerFuncionario controller = new Controller.ControllerFuncionario();
-        controller.salvar(funcionario);
+        Model.ModelFuncionario funcionario = new Model.ModelFuncionario(
+                0, idSetor, nome, email, telefone
+        );
 
-        javax.swing.JOptionPane.showMessageDialog(this, "Funcionário cadastrado com sucesso!");
-        
-        // Limpa os campos após salvar
+        Controller.ControllerFuncionario controller =
+                new Controller.ControllerFuncionario();
+
+        controller.salvar(funcionario, login, senha);
+
+        javax.swing.JOptionPane.showMessageDialog(
+                this, "Funcionário e conta cadastrados com sucesso!");
+
         txtNome.setText("");
         txtEmail.setText("");
         txtTelefone.setText("");
+        txtLogin.setText("");
+        txtSenha.setText("");
+
     } catch (Exception e) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Erro ao salvar funcionário: " + e.getMessage());
+        javax.swing.JOptionPane.showMessageDialog(
+                this, "Erro ao salvar cadastro: " + e.getMessage());
     }
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSalvarActionPerformed

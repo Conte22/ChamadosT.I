@@ -1,3 +1,4 @@
+
 package Controller;
 
 import Model.ModelFuncionario;
@@ -11,22 +12,58 @@ import java.util.List;
 
 public class ControllerFuncionario {
 
-    public void salvar(ModelFuncionario funcionario) throws SQLException {
-        String sql = "INSERT INTO funcionario (id_setor, nome, email, telefone) VALUES (?, ?, ?, ?)";
+    public void salvar(ModelFuncionario funcionario, String login, String senha) throws SQLException {
 
-        try (Connection conexao = Conexao.getConexao();
-             PreparedStatement comando = conexao.prepareStatement(sql)) {
+        String sqlFuncionario = "INSERT INTO funcionario (id_setor, nome, email, telefone) VALUES (?, ?, ?, ?)";
+        String sqlUsuario = "INSERT INTO usuario (id_funcionario, nome, login, senha, tipo) VALUES (?, ?, ?, ?, 'COMUM')";
 
-            comando.setInt(1, funcionario.getIdSetorOrigem());
-            comando.setString(2, funcionario.getNome());
-            comando.setString(3, funcionario.getEmail());
-            comando.setString(4, funcionario.getTelefone());
+        try (Connection conexao = Conexao.getConexao()) {
 
-            comando.executeUpdate();
+            conexao.setAutoCommit(false);
+
+            try {
+                int idFuncionario;
+
+                try (PreparedStatement comando = conexao.prepareStatement(
+                        sqlFuncionario, PreparedStatement.RETURN_GENERATED_KEYS)) {
+
+                    comando.setInt(1, funcionario.getIdSetorOrigem());
+                    comando.setString(2, funcionario.getNome());
+                    comando.setString(3, funcionario.getEmail());
+                    comando.setString(4, funcionario.getTelefone());
+
+                    comando.executeUpdate();
+
+                    try (ResultSet resultado = comando.getGeneratedKeys()) {
+                        if (resultado.next()) {
+                            idFuncionario = resultado.getInt(1);
+                        } else {
+                            throw new SQLException("Não foi possível obter o ID do funcionário.");
+                        }
+                    }
+                }
+
+                try (PreparedStatement comando = conexao.prepareStatement(sqlUsuario)) {
+
+                    comando.setInt(1, idFuncionario);
+                    comando.setString(2, funcionario.getNome());
+                    comando.setString(3, login);
+                    comando.setString(4, senha);
+
+                    comando.executeUpdate();
+                }
+
+                conexao.commit();
+
+            } catch (SQLException erro) {
+                conexao.rollback();
+                throw erro;
+            }
         }
     }
 
     public List<ModelFuncionario> listar() throws SQLException {
+
         List<ModelFuncionario> funcionarios = new ArrayList<>();
 
         String sql = "SELECT id_funcionario, id_setor, nome, email, telefone FROM funcionario";
@@ -36,12 +73,13 @@ public class ControllerFuncionario {
              ResultSet resultado = comando.executeQuery()) {
 
             while (resultado.next()) {
+
                 ModelFuncionario funcionario = new ModelFuncionario(
-                    resultado.getInt("id_funcionario"),
-                    resultado.getInt("id_setor"),
-                    resultado.getString("nome"),
-                    resultado.getString("email"),
-                    resultado.getString("telefone")
+                        resultado.getInt("id_funcionario"),
+                        resultado.getInt("id_setor"),
+                        resultado.getString("nome"),
+                        resultado.getString("email"),
+                        resultado.getString("telefone")
                 );
 
                 funcionarios.add(funcionario);
