@@ -92,28 +92,32 @@ public class TelaLogin extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
+
 private void entrar() {
     String login = txtLogin.getText().trim();
+    String senha = new String(txtSenha.getPassword());
 
-    String erro = controladorUsuario.validar(login);
+    String erro = controladorUsuario.validar(login, senha);
 
     if (erro != null) {
         lblMensagem.setText(erro);
         return;
     }
 
-    Usuario usuario = controladorUsuario.autenticar(login);
+    Usuario usuario = controladorUsuario.autenticar(login, senha);
 
     if (usuario == null) {
-        lblMensagem.setText("Usuário não encontrado.");
+        lblMensagem.setText("Login ou senha incorretos.");
+        txtSenha.setText("");
         txtLogin.requestFocus();
         return;
     }
 
-    TelaMenuInicial menu = new TelaMenuInicial();
+    TelaMenuInicial menu = new TelaMenuInicial(usuario);
     menu.setVisible(true);
     dispose();
 }
+
 
     /**
      * @param args the command line arguments

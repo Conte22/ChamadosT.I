@@ -13,13 +13,17 @@ public class TelaMenuInicial extends javax.swing.JFrame {
     /**
      * Creates new form TelaMenuInicial
      */
-    private Usuario usuario;
+private Usuario usuario;
 
-    public TelaMenuInicial(Usuario usuario) {
+public TelaMenuInicial(Usuario usuario) {
     initComponents();
     this.usuario = usuario;
 
-    btnTI.setVisible(usuario.getTipo().equals("ADMIN"));
+    btnTI.setVisible(
+        usuario != null && "ADMIN".equals(usuario.getTipo())
+    );
+
+    this.setLocationRelativeTo(null);
 }
 
     /**
@@ -107,22 +111,18 @@ public class TelaMenuInicial extends javax.swing.JFrame {
     private void btnFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFuncionarioActionPerformed
     TelaChamado telaChamado = new TelaChamado();
     telaChamado.setVisible(true);
-        // TODO add your handling code here:
+    this.dispose();
     }//GEN-LAST:event_btnFuncionarioActionPerformed
 
     private void btnTIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTIActionPerformed
-       String senha = javax.swing.JOptionPane.showInputDialog(
-        this, 
-        "Digite a senha de acesso da T.I.:", 
-        "Acesso Restrito", 
-        javax.swing.JOptionPane.QUESTION_MESSAGE
-    );
-    if (senha != null && senha.equals("2160")) {
-        TelaPainelTI painel = new TelaPainelTI();
+    if (usuario != null && "ADMIN".equals(usuario.getTipo())) {
+        TelaPainelTI painel = new TelaPainelTI(usuario);
         painel.setVisible(true);
         this.dispose();
-    } else if (senha != null) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Senha incorreta!", "Erro", javax.swing.JOptionPane.ERROR_MESSAGE);
+    } else {
+        javax.swing.JOptionPane.showMessageDialog(
+                this, "Acesso permitido somente ao administrador."
+        );
     }
         // TODO add your handling code here:
     }//GEN-LAST:event_btnTIActionPerformed
@@ -171,8 +171,7 @@ public class TelaMenuInicial extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaMenuInicial().setVisible(true);
-            }
+            new TelaLogin().setVisible(true);            }
         });
     }
 

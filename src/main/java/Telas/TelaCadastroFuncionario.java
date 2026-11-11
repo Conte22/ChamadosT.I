@@ -2,33 +2,39 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Telas;
 
 /**
  *
  * @author gabriel.conte
  */
+package Telas;
+
+import Model.Usuario;
+
 public class TelaCadastroFuncionario extends javax.swing.JFrame {
 
+    private Usuario usuario;
     /**
      * Creates new form TelaCadastroFuncionario
      */
-    public TelaCadastroFuncionario() {
-        initComponents();
-        
-        this.setLocationRelativeTo(null); 
+    public TelaCadastroFuncionario(Usuario usuario) {
+    initComponents();
+    this.usuario = usuario;
 
-        this.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+    this.setLocationRelativeTo(null);
+    this.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
-        this.addWindowListener(new java.awt.event.WindowAdapter() {
-            @Override
-            public void windowClosing(java.awt.event.WindowEvent e) {
-                new TelaPainelTI().setVisible(true); 
-                dispose();
-            }
-        });
-        carregarSetores(); 
-    }
+    this.addWindowListener(new java.awt.event.WindowAdapter() {
+        @Override
+        public void windowClosing(java.awt.event.WindowEvent e) {
+            new TelaPainelTI(usuario).setVisible(true);
+            dispose();
+        }
+    });
+
+    carregarSetores();
+}
+
 
     private void carregarSetores() {
         try {
@@ -201,8 +207,8 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
         String telefone = txtTelefone.getText().trim();
         String setorSelecionado = (String) cbSetor.getSelectedItem();
 
-        if (nome.isEmpty() || email.isEmpty() || setorSelecionado == null) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Preencha todos os campos obrigatórios!");
+if (nome.isEmpty() || email.isEmpty() || telefone.isEmpty() || setorSelecionado == null) {
+    javax.swing.JOptionPane.showMessageDialog(this, "Preencha todos os campos obrigatórios!");
             return;
         }
 
@@ -226,8 +232,8 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
-       this.dispose();
-        // TODO add your handling code here:
+         new TelaPainelTI(usuario).setVisible(true);
+          this.dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     /**
@@ -260,8 +266,7 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaCadastroFuncionario().setVisible(true);
-            }
+            new TelaLogin().setVisible(true);            }
         });
     }
 

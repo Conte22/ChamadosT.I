@@ -2,55 +2,56 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Telas;
-
 /**
  *
  * @author gabriel.conte
- */
+ * */
+package Telas;
+
 public class TelaChamado extends javax.swing.JFrame {
+
+    private Model.Usuario usuario;
+
+
 
     /**
      * Creates new form TelaChamado
      */
-    public TelaChamado() {
-        initComponents();
-        this.setLocationRelativeTo(null); 
-        this.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        this.addWindowListener(new java.awt.event.WindowAdapter() {
-            @Override
-            public void windowClosing(java.awt.event.WindowEvent e) {
-                new TelaMenuInicial().setVisible(true); 
-                dispose();
-            }
-        });
-
-        carregarCombos(); 
-    }
-
     private void carregarCombos() {
-        try {
-            Controller.ControllerFuncionario ctrlFunc = new Controller.ControllerFuncionario();
-            cbFuncionario.removeAllItems();
-            for (Model.ModelFuncionario f : ctrlFunc.listar()) {
-                cbFuncionario.addItem(f.getIdFuncionario() + " - " + f.getNome());
-            }
+    try {
+        cbFuncionario.removeAllItems();
+        cbSetor.removeAllItems();
+        cbTipoImpacto.removeAllItems();
 
-            Controller.ControllerSetor ctrlSetor = new Controller.ControllerSetor();
-            cbSetor.removeAllItems();
-            for (Model.ModelSetor s : ctrlSetor.listar()) {
-                cbSetor.addItem(s.getIdSetor() + " - " + s.getNomeSetor());
-            }
+        Controller.ControllerFuncionario ctrlFunc =
+                new Controller.ControllerFuncionario();
 
-            cbTipoImpacto.removeAllItems();
-            cbTipoImpacto.addItem("Baixo");
-            cbTipoImpacto.addItem("Médio");
-            cbTipoImpacto.addItem("Alto");
-            cbTipoImpacto.addItem("Crítico");
-        } catch (Exception e) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Erro ao carregar dados: " + e.getMessage());
+        for (Model.ModelFuncionario f : ctrlFunc.listar()) {
+            cbFuncionario.addItem(
+                    f.getIdFuncionario() + " - " + f.getNome()
+            );
         }
+
+        Controller.ControllerSetor ctrlSetor =
+                new Controller.ControllerSetor();
+
+        for (Model.ModelSetor s : ctrlSetor.listar()) {
+            cbSetor.addItem(
+                    s.getIdSetor() + " - " + s.getNomeSetor()
+            );
+        }
+
+        cbTipoImpacto.addItem("Baixo");
+        cbTipoImpacto.addItem("Médio");
+        cbTipoImpacto.addItem("Alto");
+        cbTipoImpacto.addItem("Crítico");
+
+    } catch (Exception e) {
+        javax.swing.JOptionPane.showMessageDialog(
+                this, "Erro ao carregar dados: " + e.getMessage()
+        );
     }
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -208,7 +209,8 @@ public class TelaChamado extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
-    this.dispose();
+        new TelaMenuInicial(usuario).setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     /**
@@ -241,8 +243,7 @@ public class TelaChamado extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaChamado().setVisible(true);
-            }
+        new TelaLogin().setVisible(true);            }
         });
     }
 
