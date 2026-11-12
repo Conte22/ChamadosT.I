@@ -28,20 +28,10 @@ public TelaChamado(Model.Usuario usuario) {
     /**
      * Creates new form TelaChamado
      */
-    private void carregarCombos() {
+   private void carregarCombos() {
     try {
-        cbFuncionario.removeAllItems();
         cbSetor.removeAllItems();
         cbTipoImpacto.removeAllItems();
-
-        Controller.ControllerFuncionario ctrlFunc =
-                new Controller.ControllerFuncionario();
-
-        for (Model.ModelFuncionario f : ctrlFunc.listar()) {
-            cbFuncionario.addItem(
-                    f.getIdFuncionario() + " - " + f.getNome()
-            );
-        }
 
         Controller.ControllerSetor ctrlSetor =
                 new Controller.ControllerSetor();
@@ -56,6 +46,9 @@ public TelaChamado(Model.Usuario usuario) {
         cbTipoImpacto.addItem("Médio");
         cbTipoImpacto.addItem("Alto");
         cbTipoImpacto.addItem("Crítico");
+
+        cbFuncionario.setVisible(false);
+        jLabel3.setVisible(false);
 
     } catch (Exception e) {
         javax.swing.JOptionPane.showMessageDialog(
@@ -192,31 +185,55 @@ public TelaChamado(Model.Usuario usuario) {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-    if (cbFuncionario.getSelectedItem() == null || cbSetor.getSelectedItem() == null || txtDescricao.getText().trim().isEmpty()) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Selecione o funcionário, o setor e preencha a descrição!");
+      if (usuario == null || usuario.getIdFuncionario() <= 0) {
+        javax.swing.JOptionPane.showMessageDialog(
+                this, "Não existe um funcionário vinculado a este usuário."
+        );
+        return;
+    }
+
+    if (cbSetor.getSelectedItem() == null
+            || cbTipoImpacto.getSelectedItem() == null
+            || txtDescricao.getText().trim().isEmpty()) {
+
+        javax.swing.JOptionPane.showMessageDialog(
+                this, "Selecione o setor, a gravidade e preencha a descrição!"
+        );
         return;
     }
 
     try {
-        // Extrai o ID numérico antes do hífen (ex: "3204 - Gabriel Conte" -> 3204)
-        int idFuncionario = Integer.parseInt(cbFuncionario.getSelectedItem().toString().split(" - ")[0]);
-        int idSetor = Integer.parseInt(cbSetor.getSelectedItem().toString().split(" - ")[0]);
+        int idFuncionario = usuario.getIdFuncionario();
+
+        int idSetor = Integer.parseInt(
+                cbSetor.getSelectedItem().toString().split(" - ")[0]
+        );
+
         String impacto = cbTipoImpacto.getSelectedItem().toString();
         String descricao = txtDescricao.getText().trim();
 
         Model.ModelChamado chamado = new Model.ModelChamado(
-            0, idFuncionario, idSetor, impacto, descricao, "Aberto", java.time.LocalDateTime.now()
+                0, idFuncionario, idSetor, impacto,
+                descricao, "Aberto",
+                java.time.LocalDateTime.now()
         );
 
-        Controller.ControllerChamado controller = new Controller.ControllerChamado();
+        Controller.ControllerChamado controller =
+                new Controller.ControllerChamado();
+
         controller.salvar(chamado);
 
-        javax.swing.JOptionPane.showMessageDialog(this, "Chamado registrado com sucesso!");
-        txtDescricao.setText("");
-    } catch (Exception e) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Erro ao registrar chamado: " + e.getMessage());
-    }
+        javax.swing.JOptionPane.showMessageDialog(
+                this, "Chamado registrado com sucesso!"
+        );
 
+        txtDescricao.setText("");
+
+    } catch (Exception e) {
+        javax.swing.JOptionPane.showMessageDialog(
+                this, "Erro ao registrar chamado: " + e.getMessage()
+        );
+    }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
