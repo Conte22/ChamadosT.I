@@ -10,6 +10,9 @@ public class TelaLogin extends javax.swing.JFrame {
     public TelaLogin() {
         initComponents();
         getRootPane().setDefaultButton(btnEntrar);
+
+        System.out.println("TelaLogin foi criada!");
+        System.out.println("Janela visível: " + isVisible());
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
