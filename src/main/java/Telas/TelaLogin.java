@@ -34,9 +34,13 @@ public class TelaLogin extends javax.swing.JFrame {
 
         lblSenha.setText("Senha:");
 
+        btnEntrar.setBackground(new java.awt.Color(153, 255, 255));
+        btnEntrar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnEntrar.setText("Entrar");
         btnEntrar.addActionListener(this::btnEntrarActionPerformed);
 
+        btnCancelar.setBackground(new java.awt.Color(204, 204, 204));
+        btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(this::btnCancelarActionPerformed);
 

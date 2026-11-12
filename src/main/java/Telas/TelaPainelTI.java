@@ -54,7 +54,8 @@ public TelaPainelTI(Usuario usuario) {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btnGerenciarChamados.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnGerenciarChamados.setBackground(new java.awt.Color(204, 204, 204));
+        btnGerenciarChamados.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnGerenciarChamados.setText("Gerenciar Chamados");
         btnGerenciarChamados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -62,7 +63,8 @@ public TelaPainelTI(Usuario usuario) {
             }
         });
 
-        btnCadastrarFuncionario.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnCadastrarFuncionario.setBackground(new java.awt.Color(204, 204, 204));
+        btnCadastrarFuncionario.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnCadastrarFuncionario.setText("Cadastrar Funcionario");
         btnCadastrarFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -110,9 +112,9 @@ public TelaPainelTI(Usuario usuario) {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addComponent(btnGerenciarChamados)
-                .addGap(51, 51, 51)
+                .addGap(49, 49, 49)
                 .addComponent(btnCadastrarFuncionario)
-                .addGap(96, 96, 96)
+                .addGap(98, 98, 98)
                 .addComponent(btnVoltar)
                 .addContainerGap())
         );

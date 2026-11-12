@@ -45,7 +45,8 @@ public TelaMenuInicial(Usuario usuario) {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setText("Selecione o Perfil de Acesso");
 
-        btnFuncionario.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        btnFuncionario.setBackground(new java.awt.Color(153, 153, 255));
+        btnFuncionario.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         btnFuncionario.setText("Abrir Chamado");
         btnFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -53,7 +54,8 @@ public TelaMenuInicial(Usuario usuario) {
             }
         });
 
-        btnTI.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        btnTI.setBackground(new java.awt.Color(102, 204, 255));
+        btnTI.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         btnTI.setText("Painel T.I");
         btnTI.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

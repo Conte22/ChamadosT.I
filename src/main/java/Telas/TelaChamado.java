@@ -80,7 +80,7 @@ public TelaChamado(Model.Usuario usuario) {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("Tela Chamado");
 
         cbSetor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -91,6 +91,8 @@ public TelaChamado(Model.Usuario usuario) {
         txtDescricao.setRows(5);
         jScrollPane1.setViewportView(txtDescricao);
 
+        btnSalvar.setBackground(new java.awt.Color(153, 255, 153));
+        btnSalvar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnSalvar.setText("Salvar");
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,6 +100,8 @@ public TelaChamado(Model.Usuario usuario) {
             }
         });
 
+        btnVoltar.setBackground(new java.awt.Color(255, 255, 153));
+        btnVoltar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnVoltar.setText("Voltar");
         btnVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -174,7 +178,7 @@ public TelaChamado(Model.Usuario usuario) {
                             .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnSalvar)
-                        .addContainerGap(42, Short.MAX_VALUE))
+                        .addContainerGap(33, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnVoltar)
