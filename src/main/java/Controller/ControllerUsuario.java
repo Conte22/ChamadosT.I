@@ -16,7 +16,7 @@ public class ControllerUsuario {
 
         } catch (SQLException erro) {
             javax.swing.JOptionPane.showMessageDialog(
-                    null, "Erro ao autenticar usuário: " + erro.getMessage()
+                    null, "Erro ao autenticar usuario: " + erro.getMessage()
             );
             return null;
         }
@@ -28,7 +28,7 @@ public class ControllerUsuario {
 
         } catch (SQLException erro) {
             javax.swing.JOptionPane.showMessageDialog(
-                    null, "Erro ao salvar usuário: " + erro.getMessage()
+                    null, "Erro ao salvar usuario: " + erro.getMessage()
             );
         }
     }
