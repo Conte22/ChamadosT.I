@@ -43,9 +43,9 @@ public TelaChamado(Model.Usuario usuario) {
         }
 
         cbTipoImpacto.addItem("Baixo");
-        cbTipoImpacto.addItem("Médio");
+        cbTipoImpacto.addItem("Medio");
         cbTipoImpacto.addItem("Alto");
-        cbTipoImpacto.addItem("Crítico");
+        cbTipoImpacto.addItem("Critico");
 
         cbFuncionario.setVisible(false);
         jLabel3.setVisible(false);
@@ -191,7 +191,7 @@ public TelaChamado(Model.Usuario usuario) {
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
       if (usuario == null || usuario.getIdFuncionario() <= 0) {
         javax.swing.JOptionPane.showMessageDialog(
-                this, "Não existe um funcionário vinculado a este usuário."
+                this, "Nao existe um funcionario vinculado a este usuario."
         );
         return;
     }
@@ -201,7 +201,7 @@ public TelaChamado(Model.Usuario usuario) {
             || txtDescricao.getText().trim().isEmpty()) {
 
         javax.swing.JOptionPane.showMessageDialog(
-                this, "Selecione o setor, a gravidade e preencha a descrição!"
+                this, "Selecione o setor, a gravidade e preencha a descricao!"
         );
         return;
     }

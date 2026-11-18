@@ -38,7 +38,7 @@ public class ControllerFuncionario {
                         if (resultado.next()) {
                             idFuncionario = resultado.getInt(1);
                         } else {
-                            throw new SQLException("Não foi possível obter o ID do funcionário.");
+                            throw new SQLException("Nao foi possível obter o ID do funcionario.");
                         }
                     }
                 }

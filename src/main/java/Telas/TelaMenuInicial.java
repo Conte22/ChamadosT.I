@@ -133,7 +133,7 @@ public TelaMenuInicial(Usuario usuario) {
         int opcao = javax.swing.JOptionPane.showConfirmDialog(
         this, 
         "Deseja realmente fechar o sistema?", 
-        "Confirmar Saída", 
+        "Confirmar Saida", 
         javax.swing.JOptionPane.YES_NO_OPTION
     );
     

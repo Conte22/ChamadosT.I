@@ -271,7 +271,7 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
                 || setorSelecionado == null) {
 
             javax.swing.JOptionPane.showMessageDialog(
-                    this, "Preencha todos os campos obrigatórios!");
+                    this, "Preencha todos os campos obrigatorios!");
             return;
         }
 
@@ -287,7 +287,7 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
         controller.salvar(funcionario, login, senha);
 
         javax.swing.JOptionPane.showMessageDialog(
-                this, "Funcionário e conta cadastrados com sucesso!");
+                this, "Funcionario e conta cadastrados com sucesso!");
 
         txtNome.setText("");
         txtEmail.setText("");

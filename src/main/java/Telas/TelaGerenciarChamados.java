@@ -30,7 +30,7 @@ public TelaGerenciarChamados(Usuario usuario) {
             modelo.setNumRows(0);
 
             modelo.setColumnIdentifiers(new String[]{
-                "ID", "Prioridade", "Descrição", "Estado", "Setor", "Funcionário"
+                "ID", "Prioridade", "Descricao", "Estado", "Setor", "Funcionario"
             });
 
             Controller.ControllerChamado controller = new Controller.ControllerChamado();
